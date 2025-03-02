@@ -3,6 +3,10 @@
 		{
 			"name": "vllm-intel-gpu-workspace",
 			"path": "/projects/vllm-intel-gpu-workspace"
+		},
+		{
+			"name": "vllm",
+			"path": "/projects/vllm"
 		}
 	],
 	"extensions": {

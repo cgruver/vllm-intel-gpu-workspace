@@ -8,10 +8,15 @@ ENV BUILDAH_ISOLATION=chroot
 COPY --chown=0:0 entrypoint.sh /
 COPY oneAPI.repo /etc/yum.repos.d/
 
-RUN dnf install -y g++ cmake git libcurl-devel intel-oneapi-mkl-sycl-devel intel-oneapi-dnnl-devel intel-oneapi-compiler-dpcpp-cpp intel-level-zero oneapi-level-zero oneapi-level-zero-devel intel-compute-runtime procps-ng python3 python3-pip python3-devel lspci clinfo openssl libbrotli git tar gzip zip xz unzip which shadow-utils bash zsh vi wget jq podman buildah skopeo podman-docker ca-certificates fuse-overlayfs util-linux vim-minimal vim-enhanced ; \
+RUN dnf install -y g++ cmake git libcurl-devel intel-oneapi-mkl-sycl-devel intel-oneapi-dnnl-devel intel-oneapi-compiler-dpcpp-cpp intel-level-zero oneapi-level-zero oneapi-level-zero-devel intel-compute-runtime procps-ng python3.12 python3.12-devel lspci clinfo openssl libbrotli git tar gzip zip xz unzip which shadow-utils bash zsh vi wget jq podman buildah skopeo podman-docker ca-certificates fuse-overlayfs util-linux vim-minimal vim-enhanced ; \
   dnf update -y ; \
   dnf clean all ; \
   mkdir -p /usr/local/bin ; \
+  python3.12 -m ensurepip ; \
+  ln -s /usr/local/bin/pip3.12 /usr/bin/pip3 ; \
+  ln -s /usr/local/bin/pip3.12 /usr/bin/pip ; \
+  ln -s /usr/bin/python3.12 /usr/bin/python3 ; \
+  ln -s /usr/bin/python3.12 /usr/bin/python ; \
   mkdir -p ${WORK_DIR} ; \
   pip install ramalama ; \
   chgrp -R 0 /home ; \

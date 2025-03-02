@@ -52,7 +52,7 @@ components:
         protocol: https
         targetPort: 8080
 - volume:
-    size: 50Gi
+    size: 75Gi
   name: projects
 - name: prep-workspace
   container:
