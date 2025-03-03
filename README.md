@@ -1,16 +1,21 @@
 # vllm-intel-gpu-workspace
 Dev Workspace for vLLM with Intel Arc GPU Support
 
-export PYTHONPATH=/usr/lib64/python3.13/site-packages:/usr/lib/python3.13/site-packages:${HOME}/.local/lib/python3.13/site-packages
+python -m pip install --upgrade pip
 
-pip install --upgrade pip
-pip install intel_extension_for_pytorch
+python -m pip install torch==2.5.1+cxx11.abi torchvision==0.20.1+cxx11.abi torchaudio==2.5.1+cxx11.abi intel-extension-for-pytorch==2.5.10+xpu oneccl_bind_pt==2.5.0+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
 
-git clone https://github.com/intel/torch-ccl.git && cd torch-ccl
-git checkout ccl_torch2.5.0+xpu
-git submodule sync
-git submodule update --init --recursive
+VLLM_TARGET_DEVICE=xpu python -m pip install .
 
-COMPUTE_BACKEND=dpcpp python setup.py install
-export INTELONEAPIROOT=${HOME}/intel/oneapi
-USE_SYSTEM_ONECCL=ON COMPUTE_BACKEND=dpcpp pip install .
+cat << EOF > requirements-xpu.txt
+-r requirements-common.txt
+
+ray >= 2.9
+cmake>=3.26
+ninja
+packaging
+setuptools-scm>=8
+setuptools>=75.8.0
+wheel
+jinja2
+EOF

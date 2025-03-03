@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora:rawhide
+FROM quay.io/fedora/fedora:41
 
 ARG USER_HOME_DIR="/home/user"
 ARG WORK_DIR="/projects"
@@ -8,14 +8,12 @@ ENV BUILDAH_ISOLATION=chroot
 COPY --chown=0:0 entrypoint.sh /
 COPY oneAPI.repo /etc/yum.repos.d/
 
-RUN dnf install -y g++ cmake git libcurl-devel intel-oneapi-mkl-sycl-devel intel-oneapi-dnnl-devel intel-oneapi-compiler-dpcpp-cpp intel-level-zero oneapi-level-zero oneapi-level-zero-devel intel-compute-runtime procps-ng python3.12 python3.12-devel python-torch lspci clinfo openssl libbrotli git tar gzip zip xz unzip which shadow-utils bash zsh vi wget jq podman buildah skopeo podman-docker ca-certificates fuse-overlayfs util-linux vim-minimal vim-enhanced awk ; \
+RUN dnf install -y g++ cmake git libcurl-devel intel-oneapi-mkl-sycl-devel intel-oneapi-dnnl-devel intel-oneapi-compiler-dpcpp-cpp intel-level-zero oneapi-level-zero oneapi-level-zero-devel intel-compute-runtime procps-ng python3.12 python3.12-devel lspci clinfo openssl libbrotli git tar gzip zip xz unzip which shadow-utils bash zsh vi wget jq podman buildah skopeo podman-docker ca-certificates fuse-overlayfs util-linux vim-minimal vim-enhanced awk ; \
   dnf update -y ; \
   dnf clean all ; \
   mkdir -p /usr/local/bin ; \
   mkdir -p ${WORK_DIR} ; \
-  # pip install --upgrade pip ; \
-  # pip install ramalama ; \
-  # pip install intel_extension_for_pytorch ; \
+  python3.12 -m ensurepip ; \
   chgrp -R 0 /home ; \
   chmod -R g=u /home ${WORK_DIR} ; \
   chmod +x /entrypoint.sh ; \

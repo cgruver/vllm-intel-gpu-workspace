@@ -1,2 +1,5 @@
 export PATH=${PATH}:${HOME}/.local/bin
+alias python=/usr/sbin/python3.12
 source /opt/intel/oneapi/setvars.sh
+alias python=/usr/sbin/python3.12
+
