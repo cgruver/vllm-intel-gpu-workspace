@@ -38,8 +38,6 @@ components:
     cpuRequest: 1000m
     mountSources: true
     env:
-    - name: SHELL
-      value: "/bin/zsh"
     - name: HOME
       value: "/projects/home"
     - name: VSCODE_DEFAULT_WORKSPACE
