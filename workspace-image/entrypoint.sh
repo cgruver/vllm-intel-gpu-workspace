@@ -42,7 +42,7 @@ then
 fi
 
 # Configure Bash shell
-if [ ! -f ${HOME}/.zshrc ]
+if [ ! -f ${HOME}/.bashrc ]
 then
   (echo "if [ -f ${PROJECT_SOURCE}/workspace.rc ]"; echo "then"; echo "  . ${PROJECT_SOURCE}/workspace.rc"; echo "fi") >> ${HOME}/.bashrc
 fi
