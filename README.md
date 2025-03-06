@@ -1,4 +1,7 @@
 # vllm-intel-gpu-workspace
+
+__Note -__ Archived in favor of [https://github.com/cgruver/intel-xpu-workspace.git](https://github.com/cgruver/intel-xpu-workspace.git)
+
 Dev Workspace for vLLM with Intel Arc GPU Support
 
 ```bash
