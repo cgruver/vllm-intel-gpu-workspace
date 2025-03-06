@@ -48,3 +48,15 @@ curl -k https://cgruver-vllm-intel-gpu-vllm.apps.region-01.clg.lab/v1/chat/compl
 curl -k https://cgruver-vllm-intel-gpu-vllm.apps.region-01.clg.lab/v1/models
 
 ```
+
+
+```
+python -m pip install pybind11
+
+git clone https://github.com/intel/intel-xpu-backend-for-triton.git
+cd intel-xpu-backend-for-triton
+
+scripts/install-pytorch.sh --source
+
+scripts/compile-triton.sh
+```
